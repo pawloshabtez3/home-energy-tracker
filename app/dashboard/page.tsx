@@ -11,7 +11,7 @@ import EnergyList from '@/components/EnergyList';
 import InsightsCard from '@/components/InsightsCard';
 import { EnergyReading, DateRange } from '@/lib/types';
 import { calculateStatistics, filterByDateRange, toISODateString } from '@/lib/utils';
-import toast from 'react-hot-toast';
+import { showSuccessToast, showErrorToast } from '@/lib/toast';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -61,9 +61,9 @@ export default function DashboardPage() {
   const handleAddReading = async (reading: Omit<EnergyReading, 'id' | 'user_id' | 'created_at' | 'updated_at'>) => {
     try {
       await addReading(reading);
-      toast.success('Energy reading added successfully', { duration: 3000 });
+      showSuccessToast('Energy reading added successfully');
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : 'Failed to add reading');
+      showErrorToast(error instanceof Error ? error.message : 'Failed to add reading');
       throw error;
     }
   };
@@ -85,11 +85,11 @@ export default function DashboardPage() {
     
     try {
       await updateReading(editingId, reading);
-      toast.success('Energy reading updated successfully', { duration: 3000 });
+      showSuccessToast('Energy reading updated successfully');
       setEditingId(null);
       setEditingReading(undefined);
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : 'Failed to update reading');
+      showErrorToast(error instanceof Error ? error.message : 'Failed to update reading');
       throw error;
     }
   };
@@ -104,9 +104,9 @@ export default function DashboardPage() {
   const handleDelete = async (id: string) => {
     try {
       await deleteReading(id);
-      toast.success('Energy reading deleted successfully', { duration: 3000 });
+      showSuccessToast('Energy reading deleted successfully');
     } catch (error) {
-      toast.error(error instanceof Error ? error.message : 'Failed to delete reading');
+      showErrorToast(error instanceof Error ? error.message : 'Failed to delete reading');
     }
   };
 
@@ -116,14 +116,14 @@ export default function DashboardPage() {
       await signOut();
       router.push('/');
     } catch (error) {
-      toast.error('Failed to sign out');
+      showErrorToast('Failed to sign out');
     }
   };
 
   // Fetch AI insights
   const fetchInsights = async () => {
     if (filteredReadings.length === 0) {
-      toast.error('Add some energy readings first to get insights');
+      showErrorToast('Add some energy readings first to get insights');
       return;
     }
 

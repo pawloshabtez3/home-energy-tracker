@@ -3,7 +3,7 @@
 import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
-import toast from 'react-hot-toast';
+import { showSuccessToast, showErrorToast } from '@/lib/toast';
 
 interface AuthFormProps {
   mode: 'login' | 'signup';
@@ -50,23 +50,23 @@ export default function AuthForm({ mode }: AuthFormProps) {
     try {
       if (mode === 'signup') {
         await signUp(email, password);
-        toast.success('Account created successfully!');
+        showSuccessToast('Account created successfully!');
       } else {
         await signIn(email, password);
-        toast.success('Logged in successfully!');
+        showSuccessToast('Logged in successfully!');
       }
       router.push('/dashboard');
     } catch (error: any) {
       const errorMessage = error.message || 'An error occurred';
       
       if (errorMessage.includes('Invalid login credentials')) {
-        toast.error('Invalid email or password');
+        showErrorToast('Invalid email or password');
       } else if (errorMessage.includes('User already registered')) {
-        toast.error('An account with this email already exists');
+        showErrorToast('An account with this email already exists');
       } else if (errorMessage.includes('Unable to connect')) {
-        toast.error('Unable to connect. Please try again.');
+        showErrorToast('Unable to connect. Please try again.');
       } else {
-        toast.error(errorMessage);
+        showErrorToast(errorMessage);
       }
     } finally {
       setLoading(false);
