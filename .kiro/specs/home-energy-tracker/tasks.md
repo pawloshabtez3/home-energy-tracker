@@ -250,7 +250,12 @@
   - Ensure table/list view adapts to card layout on mobile
   - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5_
 
-- [ ] 11. Add navigation and layout components
+- [x] 11. Add navigation and layout components
+
+
+
+
+
   - Create Navbar component with logo and user menu
   - Add sign out button in navigation
   - Create protected route layout in /app/dashboard/layout.tsx
@@ -259,7 +264,12 @@
   - Style navigation with TailwindCSS
   - _Requirements: 1.5_
 
-- [ ] 12. Configure deployment and environment setup
+- [x] 12. Configure deployment and environment setup
+
+
+
+
+
   - Create .env.local.example with all required environment variables
   - Set up Vercel project and connect GitHub repository
   - Configure environment variables in Vercel dashboard (NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, GEMINI_API_KEY)

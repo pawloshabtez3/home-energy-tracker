@@ -1,8 +1,6 @@
 'use client';
 
-import { useState, useMemo, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { useAuth } from '@/hooks/useAuth';
+import { useState, useMemo } from 'react';
 import { useEnergyReadings } from '@/hooks/useEnergyReadings';
 import Chart from '@/components/Chart';
 import StatCard from '@/components/StatCard';
@@ -14,8 +12,6 @@ import { calculateStatistics, filterByDateRange, toISODateString } from '@/lib/u
 import { showSuccessToast, showErrorToast } from '@/lib/toast';
 
 export default function DashboardPage() {
-  const router = useRouter();
-  const { user, loading: authLoading, signOut } = useAuth();
   const { readings, loading: readingsLoading, addReading, updateReading, deleteReading } = useEnergyReadings();
 
   // Filter states
@@ -39,13 +35,6 @@ export default function DashboardPage() {
   const [insights, setInsights] = useState<string | null>(null);
   const [insightsLoading, setInsightsLoading] = useState(false);
   const [insightsError, setInsightsError] = useState<string | null>(null);
-
-  // Redirect to login if not authenticated
-  useEffect(() => {
-    if (!authLoading && !user) {
-      router.push('/auth/login');
-    }
-  }, [user, authLoading, router]);
 
   // Filter readings based on date range
   const filteredReadings = useMemo(() => {
@@ -110,16 +99,6 @@ export default function DashboardPage() {
     }
   };
 
-  // Handle sign out
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-      router.push('/');
-    } catch (error) {
-      showErrorToast('Failed to sign out');
-    }
-  };
-
   // Fetch AI insights
   const fetchInsights = async () => {
     if (filteredReadings.length === 0) {
@@ -154,49 +133,8 @@ export default function DashboardPage() {
     }
   };
 
-  // Show loading state while checking authentication
-  if (authLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-      </div>
-    );
-  }
-
-  // Don't render dashboard if not authenticated
-  if (!user) {
-    return null;
-  }
-
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Navigation */}
-      <nav className="bg-white border-b border-gray-200 sticky top-0 z-10 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-14 sm:h-16">
-            <div className="flex items-center">
-              <h1 className="text-base sm:text-xl font-bold text-gray-900 truncate">Home Energy Tracker</h1>
-            </div>
-            <div className="flex items-center gap-2 sm:gap-4">
-              <span className="hidden sm:inline text-sm text-gray-600 truncate max-w-[150px] lg:max-w-none">{user.email}</span>
-              <button
-                onClick={handleSignOut}
-                className="min-h-[44px] min-w-[44px] px-3 sm:px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 active:bg-gray-100 touch-manipulation"
-              >
-                <span className="hidden sm:inline">Sign Out</span>
-                <span className="sm:hidden">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                  </svg>
-                </span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {/* Left Column - Form */}
           <div className="lg:col-span-1 order-2 lg:order-1">
@@ -375,6 +313,5 @@ export default function DashboardPage() {
           </div>
         </div>
       </main>
-    </div>
   );
 }
