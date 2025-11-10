@@ -79,8 +79,15 @@
   - Test session persistence across page reloads
   - _Requirements: 1.1, 1.2, 1.4, 1.5_
 
-- [ ] 5. Implement energy readings CRUD operations
-- [ ] 5.1 Create useEnergyReadings custom hook
+- [x] 5. Implement energy readings CRUD operations
+
+
+
+
+
+- [x] 5.1 Create useEnergyReadings custom hook
+
+
   - Implement fetchReadings function with Supabase query
   - Create addReading function with validation and error handling
   - Create updateReading function with optimistic updates
@@ -89,7 +96,9 @@
   - Add refetch functionality for data synchronization
   - _Requirements: 2.1, 2.2, 2.3, 2.4, 2.5, 3.1, 3.2, 3.3, 3.4, 3.5_
 
-- [ ] 5.2 Build EnergyForm component
+
+- [x] 5.2 Build EnergyForm component
+
   - Create form with date picker, utility type dropdown, usage input, and notes textarea
   - Implement client-side validation (future date check, positive number check)
   - Add mode prop to handle both create and edit scenarios
@@ -97,7 +106,9 @@
   - Handle form submission with loading state
   - _Requirements: 2.1, 2.2, 2.3, 2.5, 3.1_
 
-- [ ] 5.3 Build EnergyList component
+
+- [x] 5.3 Build EnergyList component
+
   - Display energy readings in responsive table/card layout
   - Add edit and delete buttons for each reading
   - Implement delete confirmation dialog
