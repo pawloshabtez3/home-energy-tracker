@@ -169,13 +169,13 @@ export default function EnergyList({ readings, onEdit, onDelete }: EnergyListPro
               <div className="flex gap-2 pt-3 border-t border-gray-100">
                 <button
                   onClick={() => onEdit(reading.id)}
-                  className="flex-1 px-3 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-md hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="min-h-[44px] flex-1 px-3 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-md hover:bg-blue-100 active:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 touch-manipulation"
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => handleDeleteClick(reading.id)}
-                  className="flex-1 px-3 py-2 text-sm font-medium text-red-600 bg-red-50 rounded-md hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-500"
+                  className="min-h-[44px] flex-1 px-3 py-2 text-sm font-medium text-red-600 bg-red-50 rounded-md hover:bg-red-100 active:bg-red-200 focus:outline-none focus:ring-2 focus:ring-red-500 touch-manipulation"
                 >
                   Delete
                 </button>
@@ -196,13 +196,13 @@ export default function EnergyList({ readings, onEdit, onDelete }: EnergyListPro
             <div className="flex gap-3 justify-end">
               <button
                 onClick={cancelDelete}
-                className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="min-h-[44px] px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 active:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 touch-manipulation"
               >
                 Cancel
               </button>
               <button
                 onClick={confirmDelete}
-                className="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="min-h-[44px] px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 active:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-500 touch-manipulation"
               >
                 Delete
               </button>

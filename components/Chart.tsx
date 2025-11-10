@@ -55,10 +55,10 @@ export default function Chart({ data, type, utilityFilter = 'all', dateRange }: 
   // Empty state
   if (chartData.length === 0) {
     return (
-      <div className="flex items-center justify-center h-80 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
-        <div className="text-center">
+      <div className="flex items-center justify-center h-64 sm:h-80 lg:h-96 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
+        <div className="text-center px-4">
           <svg
-            className="mx-auto h-12 w-12 text-gray-400"
+            className="mx-auto h-10 w-10 sm:h-12 sm:w-12 text-gray-400"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -71,7 +71,7 @@ export default function Chart({ data, type, utilityFilter = 'all', dateRange }: 
             />
           </svg>
           <h3 className="mt-2 text-sm font-medium text-gray-900">No data available</h3>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-xs sm:text-sm text-gray-500">
             No data available for the selected period. Try adjusting your filters.
           </p>
         </div>
@@ -84,14 +84,19 @@ export default function Chart({ data, type, utilityFilter = 'all', dateRange }: 
   const showGas = utilityFilter === 'all' || utilityFilter === 'gas';
   const showWater = utilityFilter === 'all' || utilityFilter === 'water';
 
-  // Common chart props
+  // Common chart props - adjust margins for mobile
   const commonProps = {
     data: chartData,
-    margin: { top: 5, right: 30, left: 20, bottom: 5 },
+    margin: { 
+      top: 5, 
+      right: typeof window !== 'undefined' && window.innerWidth < 640 ? 10 : 30, 
+      left: typeof window !== 'undefined' && window.innerWidth < 640 ? 0 : 20, 
+      bottom: 5 
+    },
   };
 
   return (
-    <div className="w-full h-80 bg-white p-4 rounded-lg border border-gray-200">
+    <div className="w-full h-64 sm:h-80 lg:h-96 bg-white rounded-lg">
       <ResponsiveContainer width="100%" height="100%">
         {type === 'line' ? (
           <LineChart {...commonProps}>
@@ -100,23 +105,29 @@ export default function Chart({ data, type, utilityFilter = 'all', dateRange }: 
               dataKey="date"
               tickFormatter={formatDate}
               stroke="#6b7280"
-              style={{ fontSize: '12px' }}
+              style={{ fontSize: '10px' }}
+              tick={{ fontSize: 10 }}
             />
             <YAxis
               stroke="#6b7280"
-              style={{ fontSize: '12px' }}
-              label={{ value: 'Usage', angle: -90, position: 'insideLeft', style: { fontSize: '12px' } }}
+              style={{ fontSize: '10px' }}
+              tick={{ fontSize: 10 }}
+              width={typeof window !== 'undefined' && window.innerWidth < 640 ? 40 : 60}
             />
             <Tooltip
               contentStyle={{
                 backgroundColor: '#fff',
                 border: '1px solid #e5e7eb',
                 borderRadius: '6px',
-                fontSize: '12px',
+                fontSize: '11px',
+                padding: '8px',
               }}
               labelFormatter={(label) => `Date: ${formatDate(label)}`}
             />
-            <Legend wrapperStyle={{ fontSize: '12px' }} />
+            <Legend 
+              wrapperStyle={{ fontSize: '10px' }} 
+              iconSize={10}
+            />
             {showElectricity && (
               <Line
                 type="monotone"
@@ -158,23 +169,29 @@ export default function Chart({ data, type, utilityFilter = 'all', dateRange }: 
               dataKey="date"
               tickFormatter={formatDate}
               stroke="#6b7280"
-              style={{ fontSize: '12px' }}
+              style={{ fontSize: '10px' }}
+              tick={{ fontSize: 10 }}
             />
             <YAxis
               stroke="#6b7280"
-              style={{ fontSize: '12px' }}
-              label={{ value: 'Usage', angle: -90, position: 'insideLeft', style: { fontSize: '12px' } }}
+              style={{ fontSize: '10px' }}
+              tick={{ fontSize: 10 }}
+              width={typeof window !== 'undefined' && window.innerWidth < 640 ? 40 : 60}
             />
             <Tooltip
               contentStyle={{
                 backgroundColor: '#fff',
                 border: '1px solid #e5e7eb',
                 borderRadius: '6px',
-                fontSize: '12px',
+                fontSize: '11px',
+                padding: '8px',
               }}
               labelFormatter={(label) => `Date: ${formatDate(label)}`}
             />
-            <Legend wrapperStyle={{ fontSize: '12px' }} />
+            <Legend 
+              wrapperStyle={{ fontSize: '10px' }} 
+              iconSize={10}
+            />
             {showElectricity && (
               <Bar
                 dataKey="electricity"

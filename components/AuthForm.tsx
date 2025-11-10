@@ -74,9 +74,9 @@ export default function AuthForm({ mode }: AuthFormProps) {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-6">
-      <div className="bg-white rounded-lg shadow-md p-8">
-        <h2 className="text-2xl font-bold text-center mb-6">
+    <div className="w-full max-w-md mx-auto p-4 sm:p-6">
+      <div className="bg-white rounded-lg shadow-md p-6 sm:p-8">
+        <h2 className="text-xl sm:text-2xl font-bold text-center mb-6">
           {mode === 'login' ? 'Log In' : 'Sign Up'}
         </h2>
         
@@ -90,7 +90,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="min-h-[44px] w-full px-3 py-2 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 touch-manipulation"
               disabled={loading}
             />
             {errors.email && (
@@ -107,7 +107,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="min-h-[44px] w-full px-3 py-2 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 touch-manipulation"
               disabled={loading}
             />
             {errors.password && (
@@ -118,7 +118,7 @@ export default function AuthForm({ mode }: AuthFormProps) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+            className="min-h-[44px] w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 active:bg-blue-800 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors touch-manipulation"
           >
             {loading ? 'Loading...' : mode === 'login' ? 'Log In' : 'Sign Up'}
           </button>
@@ -128,14 +128,14 @@ export default function AuthForm({ mode }: AuthFormProps) {
           {mode === 'login' ? (
             <p>
               Don't have an account?{' '}
-              <a href="/auth/signup" className="text-blue-600 hover:underline">
+              <a href="/auth/signup" className="text-blue-600 hover:underline touch-manipulation">
                 Sign up
               </a>
             </p>
           ) : (
             <p>
               Already have an account?{' '}
-              <a href="/auth/login" className="text-blue-600 hover:underline">
+              <a href="/auth/login" className="text-blue-600 hover:underline touch-manipulation">
                 Log in
               </a>
             </p>

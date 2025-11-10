@@ -136,7 +136,7 @@ export default function EnergyForm({ onSubmit, initialData, mode, onCancel }: En
           id="date"
           value={date}
           onChange={(e) => handleDateChange(e.target.value)}
-          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+          className={`min-h-[44px] w-full px-3 py-2 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 touch-manipulation ${
             errors.date ? 'border-red-500' : 'border-gray-300'
           }`}
           disabled={loading}
@@ -154,7 +154,7 @@ export default function EnergyForm({ onSubmit, initialData, mode, onCancel }: En
           id="type"
           value={type}
           onChange={(e) => setType(e.target.value as 'electricity' | 'gas' | 'water')}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="min-h-[44px] w-full px-3 py-2 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 touch-manipulation"
           disabled={loading}
         >
           <option value="electricity">Electricity</option>
@@ -175,7 +175,7 @@ export default function EnergyForm({ onSubmit, initialData, mode, onCancel }: En
           step="0.01"
           min="0"
           placeholder="Enter usage amount"
-          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+          className={`min-h-[44px] w-full px-3 py-2 text-base border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 touch-manipulation ${
             errors.usage ? 'border-red-500' : 'border-gray-300'
           }`}
           disabled={loading}
@@ -200,7 +200,7 @@ export default function EnergyForm({ onSubmit, initialData, mode, onCancel }: En
           onChange={(e) => setNotes(e.target.value)}
           rows={3}
           placeholder="Add any additional notes..."
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="min-h-[88px] w-full px-3 py-2 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 touch-manipulation"
           disabled={loading}
         />
       </div>
@@ -215,7 +215,7 @@ export default function EnergyForm({ onSubmit, initialData, mode, onCancel }: En
         <button
           type="submit"
           disabled={loading}
-          className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="min-h-[44px] flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 active:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
         >
           {loading ? 'Saving...' : mode === 'create' ? 'Add Reading' : 'Update Reading'}
         </button>
@@ -224,7 +224,7 @@ export default function EnergyForm({ onSubmit, initialData, mode, onCancel }: En
             type="button"
             onClick={onCancel}
             disabled={loading}
-            className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="min-h-[44px] px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 active:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
           >
             Cancel
           </button>
