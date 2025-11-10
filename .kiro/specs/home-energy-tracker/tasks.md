@@ -161,14 +161,22 @@
   - Test statistics calculation functions with sample data
   - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
 
-- [ ] 7. Integrate Google Gemini AI for insights
-- [ ] 7.1 Set up Gemini API client
+- [x] 7. Integrate Google Gemini AI for insights
+
+
+
+
+- [x] 7.1 Set up Gemini API client
+
+
   - Create Gemini client initialization in lib/geminiClient.ts
   - Configure API key from environment variables
   - Implement error handling for API initialization
   - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5_
 
-- [ ] 7.2 Create AI insights API route
+- [x] 7.2 Create AI insights API route
+
+
   - Build /app/api/insights/route.ts with POST handler
   - Validate user authentication via Supabase JWT
   - Format energy readings data for Gemini prompt
@@ -179,7 +187,9 @@
   - Add error handling for API failures
   - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5_
 
-- [ ] 7.3 Build InsightsCard component
+- [x] 7.3 Build InsightsCard component
+
+
   - Create component to display AI-generated insights
   - Add loading spinner during API call
   - Implement refresh button to regenerate insights
