@@ -121,8 +121,15 @@
   - Test EnergyList rendering and interaction handlers
   - _Requirements: 2.1, 2.2, 2.3, 3.1, 3.2, 3.3_
 
-- [ ] 6. Implement data visualization and statistics
-- [ ] 6.1 Create Chart component with Recharts
+- [x] 6. Implement data visualization and statistics
+
+
+
+
+
+- [x] 6.1 Create Chart component with Recharts
+
+
   - Build responsive line/bar chart using Recharts library
   - Implement data filtering by utility type
   - Implement date range filtering
@@ -131,13 +138,17 @@
   - Handle empty data state with appropriate message
   - _Requirements: 4.1, 4.2, 4.3, 4.4_
 
-- [ ] 6.2 Build StatCard component
+- [x] 6.2 Build StatCard component
+
+
   - Create reusable card component for displaying statistics
   - Add props for title, value, unit, and optional icon
   - Style with TailwindCSS for consistent appearance
   - _Requirements: 4.4, 4.5_
 
-- [ ] 6.3 Implement statistics calculations
+- [x] 6.3 Implement statistics calculations
+
+
   - Calculate total usage for each utility type within selected period
   - Calculate average daily usage for each utility type
   - Integrate calculations with StatCard components on dashboard
